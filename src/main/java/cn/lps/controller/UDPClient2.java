@@ -1,0 +1,46 @@
+package cn.lps.controller;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+
+/**
+ * @author liuyucai
+ * @Created 2020/9/21
+ * @Description
+ */
+public class UDPClient2 {
+    public static void main(String[] args) throws IOException {
+        /*
+         * 向服务器端发送数据
+         */
+        // 1.定义服务器的地址、端口号、数据
+        InetAddress address = InetAddress.getByName("172.16.35.112");
+//        int port = 8800;
+        int port = 51201;
+//        byte[] data = "用户名：admin;密码：123".getBytes();
+//        byte[] data = "MP3_PLAY;音箱,123456;11;D:\\启用车辆.mp3;70;".getBytes();
+        byte[] data = "STATUS;音箱\\,123456;11;".getBytes();
+        // 2.创建数据报，包含发送的数据信息
+        DatagramPacket packet = new DatagramPacket(data, data.length, address, port);
+        // 3.创建DatagramSocket对象
+        DatagramSocket socket = new DatagramSocket();
+        // 4.向服务器端发送数据报
+        socket.send(packet);
+
+        /*
+         * 接收服务器端响应的数据
+         */
+        // 1.创建数据报，用于接收服务器端响应的数据
+        byte[] data2 = new byte[1024];
+        DatagramPacket packet2 = new DatagramPacket(data2, data2.length);
+        // 2.接收服务器响应的数据
+        socket.receive(packet2);
+        // 3.读取数据
+        String reply = new String(data2, 0, packet2.getLength());
+        System.out.println("我是客户端，服务器说：" + reply);
+        // 4.关闭资源
+//        socket.close();
+    }
+}

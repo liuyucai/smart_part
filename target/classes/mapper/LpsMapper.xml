@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lps.dao.LpsMapper">
+
+    <insert id="saveCarArrive" parameterType="cn.lps.model.request.CarArriveReq">
+        insert into T_LPS_CAR_ARRIVE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="carNumber != null">
+                CAR_NUMBER,
+            </if>
+            <if test="arriveTime != null">
+                ARRIVE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="carNumber != null">
+                #{carNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="arriveTime != null">
+                #{arriveTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="saveCarLeave" parameterType="cn.lps.model.request.CarLeaveReq">
+        insert into T_LPS_CAR_LEAVE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="carNumber != null">
+                CAR_NUMBER,
+            </if>
+            <if test="leaveTime != null">
+                LEAVE_TIME,
+            </if>
+            <if test="allowLeave != null">
+                ALLOW_LEAVE,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="carNumber != null">
+                #{carNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="leaveTime != null">
+                #{leaveTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="allowLeave != null">
+                #{allowLeave,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="saveBusinessData" parameterType="cn.lps.model.request.BusinessDataReq">
+        insert into T_LPS_BUSINESS_DATA
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="storehouseName != null">
+                STORE_HOUSE_NAME,
+            </if>
+            <if test="businessType != null">
+                BUSINESS_TYPE,
+            </if>
+            <if test="totalWeight != null">
+                TOTAL_WEIGHT,
+            </if>
+            <if test="totalVolume != null">
+                TOTAL_VOLUME,
+            </if>
+            <if test="totalMoney != null">
+                TOTAL_MONEY,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="storehouseName != null">
+                #{storehouseName,jdbcType=VARCHAR},
+            </if>
+            <if test="businessType != null">
+                #{businessType,jdbcType=VARCHAR},
+            </if>
+            <if test="totalWeight != null">
+                #{totalWeight,jdbcType=DOUBLE},
+            </if>
+            <if test="totalVolume != null">
+                #{totalVolume,jdbcType=DOUBLE},
+            </if>
+            <if test="totalMoney != null">
+                #{totalMoney,jdbcType=DOUBLE},
+            </if>
+
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+</mapper>
